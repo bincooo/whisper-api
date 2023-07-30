@@ -20,12 +20,12 @@ class Micro {
      */
     private recording = record.record({
         sampleRate: 16000,
-        threshold: 0.8,
+        threshold: 0.5,
         verbose: true,
         recordProgram: 'sox',
         recorder: 'sox',
         soxArgs: ['-t', 'waveaudio', '-d', '-p', 'noisered', 'noise.prof', '0.21'],
-        silence: '1.0',
+        silence: '0.8',
     })
 
     /**

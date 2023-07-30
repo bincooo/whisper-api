@@ -3,9 +3,10 @@ import Micro, { Whisper } from '../src'
 
 
 async function main() {
-    const trycloudflare = "fotos-cumulative-commodities-dover.trycloudflare.com"
+    // 远程whisper： https://colab.research.google.com/github/bincooo/sd-webui-colab/blob/main/other/OpenAI_Whisper_ASR.ipynb
+    const trycloudflare = "phantom-australian-suits-quad.trycloudflare.com"
     const whisper = new Whisper("wss://" + trycloudflare + "/websocket")
-    if (!await whisper.begin("large")) {
+    if (!await whisper.begin()) {
         console.log("连接失败.")
         return
     }
@@ -41,6 +42,14 @@ async function main() {
     })
 
     whisper.event('raw_message', (params: any) => {
+        try {
+            const data = JSON.parse(params)
+            if (data.ok && !filter(data.message)) {
+                return
+            }
+        } catch(err) {
+            // ignore
+        }
         console.log('raw_message', params)
     })
 
@@ -51,6 +60,29 @@ async function main() {
     //     exit(0)
     // }, 20000)
 }
+
+function filter(message: string): boolean {
+    if (message.startsWith("字幕by")) {
+        return false
+    }
+    for (let index = 0; index < EQS.length; index++) {
+        const element = EQS[index]
+        if (element === message) {
+            return false
+        }
+    }
+    if (message.length == 1) {
+        return false
+    }
+    return true
+}
+
+const EQS = [
+    "謝謝",
+    "谢谢",
+    "謝謝收看",
+    "謝謝大家收看",
+]
 
 main()
 // .then(() => {
