@@ -4,7 +4,7 @@ import Micro, { Whisper } from '../src'
 
 async function main() {
     // 远程whisper： https://colab.research.google.com/github/bincooo/sd-webui-colab/blob/main/other/OpenAI_Whisper_ASR.ipynb
-    const trycloudflare = "phantom-australian-suits-quad.trycloudflare.com"
+    const trycloudflare = "tr-components-men-touched.trycloudflare.com"
     const whisper = new Whisper("wss://" + trycloudflare + "/websocket")
     if (!await whisper.begin()) {
         console.log("连接失败.")
@@ -19,8 +19,8 @@ async function main() {
             if (!handle) {
                 handle = whisper.createHandler()
                 handle(micro.magic(), talking)
+                console.log("开始讲话.")
             }
-            // console.log("开始讲话.")
         }
 
         if (handle) {
@@ -28,7 +28,7 @@ async function main() {
         }
         
         if (!talking) {
-            // console.log("停止讲话.")
+            console.log("停止讲话.")
             handle = undefined
         }
     })

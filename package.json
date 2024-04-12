@@ -5,12 +5,14 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "npx tsx demos/main.ts",
+    "dev-debug": "cross-env DEBUG=record npx tsx demos/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.4.1",
+    "cross-env": "^7.0.3",
     "typescript": "^5.1.6"
   },
   "dependencies": {

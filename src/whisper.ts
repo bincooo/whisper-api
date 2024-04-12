@@ -17,6 +17,7 @@ class Whisper {
         }
         const data: any = {
             type: 'wav',
+            model: 'small'
         }
         if (model) {
             data['model'] = model

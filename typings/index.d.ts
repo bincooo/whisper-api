@@ -15,19 +15,28 @@ declare module 'node-record-lpcm16' {
         /**
          * 使用的录音程序，可以是'rec'或'sox'
          */
-        recordProgram: string
+        recordProgram?: string
         /**
          * 使用的录音程序，可以是'rec'或'sox'
          */
         recorder: string
-        /**
-         * 自定义sox参数
-         */
-        soxArgs: any[]
+
         /**
          * 静音检测时间，单位秒
          */
         silence: string
+
+        channels?: number
+
+        /**
+         * 设备
+         */
+        device: string | null
+
+        /**
+         * 音频类型
+         */
+        audioType: string
     })
 }
 
